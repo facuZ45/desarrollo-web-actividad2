@@ -5,66 +5,152 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Grupo 8 - Entrega Actividad 2</title>
     <style>
+        :root {
+            --azul: #0E3FA9;
+            --espresso: #4b2e1f;
+            --cafe: #7b4d2f;
+            --crema: #f5eee6;
+            --dorado: #d9a15b;
+            --texto: #2b2522;
+            --texto-suave: #5f5550;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
-            font-family: Arial, sans-serif;
             margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
             min-height: 100vh;
-            background-color: #f4f4f4;
-            color: #333;
+            display: grid;
+            place-items: center;
+            padding: 20px;
+            font-family: "Segoe UI", Arial, sans-serif;
+            color: var(--texto);
+            background:
+                radial-gradient(circle at top right, rgba(14, 63, 169, 0.18), transparent 50%),
+                radial-gradient(circle at bottom left, rgba(217, 161, 91, 0.25), transparent 45%),
+                linear-gradient(140deg, #efe5db 0%, #f8f4ef 40%, #ede7df 100%);
         }
+
         .container {
-            background: #fff;
-            padding: 40px;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+            width: min(92vw, 640px);
+            background: linear-gradient(150deg, rgba(255, 255, 255, 0.98), rgba(245, 238, 230, 0.98));
+            border: 1px solid rgba(75, 46, 31, 0.16);
+            border-radius: 22px;
+            box-shadow:
+                0 12px 26px rgba(39, 29, 23, 0.12),
+                0 2px 8px rgba(14, 63, 169, 0.08);
             text-align: center;
-            max-width: 500px;
+            padding: clamp(24px, 4vw, 42px);
         }
+
+        .logo-wrap {
+            margin-bottom: 18px;
+        }
+
         .logo {
-            width: 150px;
-            height: 150px;
-            margin-bottom: 20px;
+            width: clamp(96px, 18vw, 150px);
+            height: clamp(96px, 18vw, 150px);
+            object-fit: contain;
+            filter: drop-shadow(0 4px 12px rgba(75, 46, 31, 0.22));
         }
+
+        .logo-fallback {
+            display: none;
+            width: clamp(96px, 18vw, 150px);
+            height: clamp(96px, 18vw, 150px);
+            margin: 0 auto;
+            border-radius: 50%;
+            border: 2px dashed rgba(14, 63, 169, 0.45);
+            color: var(--azul);
+            background: rgba(255, 255, 255, 0.75);
+            font-size: clamp(1.7rem, 5vw, 2.2rem);
+            font-weight: 700;
+            place-items: center;
+        }
+
         h1 {
-            color: #0E3FA9; 
-            margin-bottom: 10px;
+            margin: 0;
+            color: var(--azul);
+            font-size: clamp(2rem, 4vw, 2.5rem);
+            letter-spacing: 0.4px;
         }
+
         h2 {
-            color: #666;
-            font-weight: normal;
-            margin-top: 0;
-            margin-bottom: 30px;
+            margin: 10px 0 24px;
+            color: var(--texto-suave);
+            font-size: clamp(1.05rem, 2.4vw, 1.25rem);
+            font-weight: 500;
         }
+
         .integrantes {
             list-style: none;
+            margin: 0 auto;
             padding: 0;
-            margin-bottom: 30px;
+            width: min(100%, 360px);
             text-align: left;
-            display: inline-block;
+            display: grid;
+            gap: 10px;
         }
+
         .integrantes li {
-            margin-bottom: 10px;
-            font-size: 1.1em;
+            padding: 12px 14px;
+            border-radius: 12px;
+            border: 1px solid rgba(14, 63, 169, 0.12);
+            background: rgba(255, 255, 255, 0.78);
+            color: var(--texto);
+            font-size: clamp(1rem, 2.6vw, 1.08rem);
+            box-shadow: inset 0 0 0 1px rgba(217, 161, 91, 0.12);
         }
+
         .proximamente {
-            border-top: 2px solid #FFA903; 
+            margin-top: 28px;
             padding-top: 20px;
-            margin-top: 20px;
-            font-size: 1.3em;
-            color: #555;
+            border-top: 2px solid rgba(217, 161, 91, 0.72);
+            color: var(--cafe);
+            font-size: clamp(1.15rem, 2.7vw, 1.35rem);
+            line-height: 1.35;
+        }
+
+        .proximamente strong {
+            color: var(--espresso);
+        }
+
+        .logo-note {
+            margin: 16px 0 0;
+            font-size: 0.92rem;
+            color: var(--texto-suave);
+        }
+
+        code {
+            font-family: "Consolas", "Courier New", monospace;
+            color: var(--azul);
+            background: rgba(14, 63, 169, 0.08);
+            padding: 2px 5px;
+            border-radius: 6px;
+        }
+
+        @media (max-width: 420px) {
+            .container {
+                border-radius: 18px;
+                padding: 22px 16px 24px;
+            }
+
+            .integrantes li {
+                padding: 11px 12px;
+            }
         }
     </style>
 </head>
 <body>
 
     <div class="container">
-        
-        <img src="" alt="Logo de Evolución Espresso" class="logo">
-        
+        <div class="logo-wrap">
+            <img src="src/LOGO.png" alt="Logo de Evolución Espresso" class="logo" onerror="this.style.display='none';this.nextElementSibling.style.display='grid';">
+            <div class="logo-fallback" role="img" aria-label="Ícono alternativo para Evolución Espresso">☕</div>
+        </div>
+
         <h1>Grupo 8</h1>
         <h2>Integrantes:</h2>
         
@@ -76,6 +162,7 @@
         <div class="proximamente">
             Próximamente: <strong>"Evolución Espresso"</strong>
         </div>
+        <p class="logo-note">Se espera el archivo <code>src/LOGO.png</code> para visualizar el logo oficial.</p>
     </div>
 
 </body>
